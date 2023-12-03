@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator" prefix="decorator" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +24,6 @@
     <link href="<c:url value="/assets/user/style.css"/>" rel="stylesheet"/>
     <!-- font awesome styles -->
     <link href="<c:url value="/assets/user/font-awesome/css/font-awesome.css"/>" rel="stylesheet">
-<%--    <link href="<c:url value="/assets/user/css/font-awesome-ie7.min.css"/>" rel="stylesheet">--%>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <!-- Favicons -->
     <link rel="shortcut icon" href="<c:url value="/assets/user/ico/favicon.ico"/>">
@@ -43,12 +43,18 @@
                     <a href="#"><span class="icon-youtube"></span></a>
                     <a href="#"><span class="icon-tumblr"></span></a>
                 </div>
-                <a class="active" href="index.html"> <span class="icon-home"></span> Home</a>
-                <a href="#"><span class="icon-user"></span> My Account</a>
-                <a href="register.html"><span class="icon-edit"></span> Free Register </a>
-                <a href="contact.html"><span class="icon-envelope"></span> Contact us</a>
-                <a href="cart.html"><span class="icon-shopping-cart"></span> 2 Item(s) - <span
-                        class="badge badge-warning"> $448.42</span></a>
+                <a class="active" href="<c:url value="/trang-chu"/>"> <span class="icon-home"></span> Home</a>
+                <c:if test="${not empty loginInfo}">
+                    <a href="#"><span class="icon-user"></span> ${loginInfo.display_name}</a>
+                    <a href="<c:url value="/dang_xuat"/>"><span class="icon-edit"></span>Đăng xuất</a>
+                </c:if>
+                <c:if test="${empty loginInfo}">
+                    <a href="<c:url value="/dang_ky"/> "><span class="icon-edit"></span> Đăng ký </a>
+                </c:if>
+                <a href="#"><span class="icon-envelope"></span> Contact us</a>
+                <a href="<c:url value="/gio_hang"/>"><span class="icon-shopping-cart"></span> ${totalQuantity} sản phẩm - <span
+                        class="badge badge-warning"><fmt:formatNumber type="number" maxFractionDigits="3"
+                                                                      value="${totalPrice}"/> ₫</span></a>
             </div>
         </div>
     </div>
@@ -87,5 +93,7 @@ Lower Header Section
 <script src="<c:url value="/assets/user/js/jquery.easing-1.3.min.js"/>"></script>
 <script src="<c:url value="/assets/user/js/jquery.scrollTo-1.4.3.1-min.js"/>"></script>
 <script src="<c:url value="/assets/user/js/shop.js"/>"></script>
+
+<decorator:getProperty property="page.script"/>
 </body>
 </html>

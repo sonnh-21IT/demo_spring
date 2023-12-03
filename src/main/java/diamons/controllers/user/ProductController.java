@@ -17,6 +17,7 @@ public class ProductController extends BaseController{
         _mvShare.setViewName("user/products/product");
         ProductDTO productDTO = _productService.getProductByID(id);
         _mvShare.addObject("product",productDTO);
+        _mvShare.addObject("categories",_homeService.getDataCategory());
         _mvShare.addObject("productByIdCategory",_productService.getProductByIDCategory(productDTO.getId_category()));
         return _mvShare;
     }

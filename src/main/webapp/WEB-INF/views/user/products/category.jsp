@@ -44,9 +44,6 @@
             <option>Cao - Thấp</option>
         </select>
     </div>
-    <h1>
-        ${paginateDTO.end}
-    </h1>
     <c:if test="${productsPaginate.size()>0}">
     <div class="row-fluid">
         <ul class="thumbnails">

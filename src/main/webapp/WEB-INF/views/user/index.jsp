@@ -23,8 +23,9 @@ Body Section
                     </li>
                 </c:forEach>
                 <li style="border:0"> &nbsp;</li>
-                <li><a class="totalInCart" href="cart.html"><strong>Total Amount <span
-                        class="badge badge-warning pull-right" style="line-height:18px;">$448.42</span></strong></a>
+                <li><a class="totalInCart" href="#"><strong>Đã thêm <span
+                        class="badge badge-warning pull-right" style="line-height:18px;"><fmt:formatNumber type="number" maxFractionDigits="3"
+                                                                                                           value="${totalPrice}"/> ₫</span></strong></a>
                 </li>
             </ul>
         </div>
@@ -35,53 +36,11 @@ Body Section
                 only valid for online order. <br><br><a class="defaultBtn" href="#">Click here </a>
             </p>
         </div>
-        <div class="well well-small"><a href="#"><img src="assets/img/paypal.jpg" alt="payment method paypal"></a>
+        <div class="well well-small"><a href="#"><img src="<c:url value="/assets/user/img/paypal.jpg"/>" alt="payment method paypal"></a>
         </div>
-
         <a class="shopBtn btn-block" href="#">Upcoming products <br><small>Click to view</small></a>
         <br>
         <br>
-        <ul class="nav nav-list promowrapper">
-            <li>
-                <div class="thumbnail">
-                    <a class="zoomTool" href="product_details.html" title="add to cart"><span
-                            class="icon-search"></span> QUICK VIEW</a>
-                    <img src="assets/img/bootstrap-ecommerce-templates.png" alt="bootstrap ecommerce templates">
-                    <div class="caption">
-                        <h4><a class="defaultBtn" href="product_details.html">VIEW</a> <span
-                                class="pull-right">$22.00</span>
-                        </h4>
-                    </div>
-                </div>
-            </li>
-            <li style="border:0"> &nbsp;</li>
-            <li>
-                <div class="thumbnail">
-                    <a class="zoomTool" href="product_details.html" title="add to cart"><span
-                            class="icon-search"></span> QUICK VIEW</a>
-                    <img src="assets/img/shopping-cart-template.png" alt="shopping cart template">
-                    <div class="caption">
-                        <h4><a class="defaultBtn" href="product_details.html">VIEW</a> <span
-                                class="pull-right">$22.00</span>
-                        </h4>
-                    </div>
-                </div>
-            </li>
-            <li style="border:0"> &nbsp;</li>
-            <li>
-                <div class="thumbnail">
-                    <a class="zoomTool" href="product_details.html" title="add to cart"><span
-                            class="icon-search"></span> QUICK VIEW</a>
-                    <img src="assets/img/bootstrap-template.png" alt="bootstrap template">
-                    <div class="caption">
-                        <h4><a class="defaultBtn" href="product_details.html">VIEW</a> <span
-                                class="pull-right">$22.00</span>
-                        </h4>
-                    </div>
-                </div>
-            </li>
-        </ul>
-
     </div>
     <div class="span9">
         <div class="well np">
@@ -118,10 +77,10 @@ Body Section
                                 <c:forEach var="i" begin="0" end="${products_new.size()-1}" varStatus="loop">
                                 <li class="span3">
                                     <div class="thumbnail">
-                                        <a class="zoomTool" href="product_details.html" title="add to cart"><span
+                                        <a class="zoomTool" href="<c:url value="chi-tiet-san-pham/${products_new.get(i).id_product}"/>" title="add to cart"><span
                                                 class="icon-search"></span> QUICK VIEW</a>
                                         <a href="#" class="tag"></a>
-                                        <a href="product_details.html"><img
+                                        <a href="<c:url value="chi-tiet-san-pham/${products_new.get(i).id_product}"/>"><img
                                                 src="<c:url value="/assets/user/img/${products_new.get(i).img}"/>"
                                                 alt="bootstrap-ring"></a>
                                     </div>
@@ -145,7 +104,7 @@ Body Section
             Featured Products
             -->
             <div class="well well-small">
-                <h3><a class="btn btn-mini pull-right" href="products.html" title="View more">VIew More<span
+                <h3><a class="btn btn-mini pull-right" href="" title="View more">VIew More<span
                         class="icon-plus"></span></a> Sản phẩm nổi bật </h3>
                 <hr class="soften"/>
                 <div class="row-fluid">
@@ -154,9 +113,9 @@ Body Section
                         <c:forEach var="i" begin="0" end="${products_highlight.size()-1}" varStatus="loop">
                             <li class="span4">
                                 <div class="thumbnail">
-                                    <a class="zoomTool" href="product_details.html" title="add to cart"><span
+                                    <a class="zoomTool" href="<c:url value="chi-tiet-san-pham/${products_highlight.get(i).id_product}"/>" title="add to cart"><span
                                             class="icon-search"></span> QUICK VIEW</a>
-                                    <a href="chi-tiet-san-pham/${products_highlight.get(i).id_product}">
+                                    <a href="<c:url value="chi-tiet-san-pham/${products_highlight.get(i).id_product}"/>">
                                         <img src="<c:url value="/assets/user/img/${products_highlight.get(i).img}"/>"
                                              alt="">
                                     </a>
@@ -165,7 +124,7 @@ Body Section
                                         <h4>
                                             <a class="defaultBtn" href="" title="Click to view"><span
                                                     class="icon-zoom-in"></span></a>
-                                            <a class="shopBtn" href="#" title="add to cart"><span
+                                            <a class="shopBtn" href="<c:url value="/add_cart/${products_highlight.get(i).id_product}"/>" title="add to cart"><span
                                                     class="icon-plus"></span></a>
                                             <span class="pull-right">
                                             <fmt:formatNumber type="number" maxFractionDigits="3"

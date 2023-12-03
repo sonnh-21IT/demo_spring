@@ -2,17 +2,25 @@ package diamons.DAO;
 
 import diamons.DTO.CartDTO;
 import diamons.DTO.ProductDTO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Repository
 public class CartDAO extends BaseDAO {
+    @Autowired
     ProductDAO productDAO = new ProductDAO();
 
     public HashMap<Long, CartDTO> addCart(long id, HashMap<Long, CartDTO> cart) {
         CartDTO itemCart = new CartDTO();
         ProductDTO productDTO = productDAO.findProductByID(id);
-        if (productDTO != null) {
+        if (productDTO != null && cart.containsKey(id)) {
+            itemCart = cart.get(id);
+            itemCart.setTotal(itemCart.getQuantity() * itemCart.getProductDTO().getPrice());
+            itemCart.setQuantity(itemCart.getQuantity() + 1);
+        } else {
             itemCart.setProductDTO(productDTO);
             itemCart.setQuantity(1);
             itemCart.setTotal(productDTO.getPrice());
@@ -49,7 +57,7 @@ public class CartDAO extends BaseDAO {
     public int totalQuantity(HashMap<Long, CartDTO> cart) {
         int totalQuantity = 0;
         for (Map.Entry<Long, CartDTO> itemCart : cart.entrySet()) {
-            totalQuantity+=itemCart.getValue().getQuantity();
+            totalQuantity += itemCart.getValue().getQuantity();
         }
         return totalQuantity;
     }
@@ -57,7 +65,7 @@ public class CartDAO extends BaseDAO {
     public double totalPrice(HashMap<Long, CartDTO> cart) {
         double totalPrice = 0;
         for (Map.Entry<Long, CartDTO> itemCart : cart.entrySet()) {
-            totalPrice+=itemCart.getValue().getTotal();
+            totalPrice += itemCart.getValue().getTotal();
         }
         return totalPrice;
     }

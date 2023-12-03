@@ -50,7 +50,7 @@ Footer
         </div>
         <div class="span2">
             <h5>Iinformation</h5>
-            <a href="contact.html">CONTACT</a><br>
+            <a href="#">CONTACT</a><br>
             <a href="#">SITEMAP</a><br>
             <a href="#">LEGAL NOTICE</a><br>
             <a href="#">TERMS AND CONDITIONS</a><br>
